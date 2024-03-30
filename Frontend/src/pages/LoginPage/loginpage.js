@@ -4,7 +4,6 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useForm } from "react-hook-form";
-// import api from "../../HTTPHandler/api";
 import { Link } from "react-router-dom";
 import "./login.css";
 
@@ -12,18 +11,8 @@ export const Loginpage = () => {
   // ! USING USEFORM HOOK
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    // createUser(data);
     console.log(data);
   };
-  // const createUser = async (data) => {
-  //   try {
-  //     data.RoleId = 2;
-  //     const response = await api.post("/u", data);
-  //     window.alert(response);
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
 
   return (
     <div className="main">

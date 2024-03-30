@@ -17,7 +17,6 @@ export default function Register() {
   };
   const createUser = async (data) => {
     try {
-      data.RoleId = 2;
       const response = await api.post("/user/create", data);
       window.alert(response);
     } catch (e) {
@@ -61,7 +60,6 @@ export default function Register() {
             />
 
             <TextField
-              //   marginTop={8}
               type="password"
               variant="outlined"
               label="Password"
@@ -70,18 +68,29 @@ export default function Register() {
               sx={{ width: "300px", height: "100px", marginBottom: "10px" }}
             />
 
-            <InputLabel id="SelectRole">Role</InputLabel>
+            <InputLabel id="selectlabel">Role</InputLabel>
             <Select
-              id="SelectRole"
-              name="SelectRole"
+              variant="standard"
+              labelId="selectlabel"
+              label="RoleId"
+              name="RoleId"
+              {...register("RoleId")}
               sx={{ width: "300px", height: "100px", marginBottom: "10px" }}
             >
-              <MenuItem value="None">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value="Admin">Admin</MenuItem>
-              <MenuItem value="Employee">Employee</MenuItem>
+              <MenuItem value="1">Admin</MenuItem>
+              <MenuItem value="2">Employee</MenuItem>
             </Select>
+            {/* <InputLabel id="SelectRole">Role</InputLabel>
+            <Select
+              id="SelectRole"
+              label="RoleId"
+              name="SelectRole"
+              {...register("RoleId")}
+              sx={{ width: "300px", height: "100px", marginBottom: "10px" }}
+            >
+              <MenuItem value="1">Admin</MenuItem>
+              <MenuItem value="2">Employee</MenuItem>
+            </Select> */}
 
             {/* Link is used in react router dom in app.js  */}
             <Button
