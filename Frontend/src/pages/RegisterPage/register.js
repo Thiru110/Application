@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import { useForm } from "react-hook-form";
-import { InputLabel, MenuItem, Select } from "@mui/material";
+import { MenuItem, Select } from "@mui/material";
 import api from "../../HTTPHandler/api";
 
 import "../LoginPage/login.css";
@@ -68,10 +68,8 @@ export default function Register() {
               sx={{ width: "300px", height: "100px", marginBottom: "10px" }}
             />
 
-            <InputLabel id="selectlabel">Role</InputLabel>
             <Select
               variant="standard"
-              labelId="selectlabel"
               label="RoleId"
               name="RoleId"
               {...register("RoleId")}

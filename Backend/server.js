@@ -1,15 +1,48 @@
 const express = require("express");
 const db = require("./app/node-mysql-server/db-con");
-const app = express();
+const cookieParser = require("cookie-parser");
 
+const app = express();
 const port = 8000;
 
 // *  IN THIS LINE CORS IS USED TO PASS THE DATA TO REACT
 const cors = require("cors");
-app.use(cors());
+app.use(cookieParser());
+app.use(
+  cors({
+    origin: ["http://localhost:3000"],
+    methods: ["POST, GET"],
+    credentials: true,
+  })
+);
 
 // *  THIS IS IMPORTANT ONE FOR API CATCH
 app.use(express.json());
+
+// !  LOGIN WITH EMAIL AND PASS
+app.post("/user/login", (req, res) => {
+  const user = {
+    Email: req.body.Email,
+    Password: req.body.Password,
+  };
+  const sql = "SELECT * FROM appuser where Email=? and Password=?";
+
+  db.query(sql, user, (err, data) => {
+    if (err) return res.json({ Error: "Server side Error" });
+
+    if (data.length > 0) {
+      const name = data[0].name;
+      const token = jwt.sign({ name }, "our-jsonwebtoken-secrete-key", {
+        expiresIn: "1d",
+      });
+      // our cookies
+      res.cookie("token", token);
+      return res.json({ Status: "Success" });
+    } else {
+      return res.json({ Error: "No data existed" });
+    }
+  });
+});
 
 // !  FETCH ALL
 app.get("/user/fetch", (req, res) => {
