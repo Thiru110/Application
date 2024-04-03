@@ -11,6 +11,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Loginpage />} />
+          
           {/* this url will be Placed in main page */}
           <Route path="/register" element={<Register />} />
           <Route path="/main" element={<Main />} />

@@ -11,10 +11,12 @@ import "../LoginPage/login.css";
 
 export default function Register() {
   const { register, handleSubmit } = useForm();
+
   const onSubmit = (data) => {
     createUser(data);
     console.log(data);
   };
+
   const createUser = async (data) => {
     try {
       const response = await api.post("/user/create", data);
