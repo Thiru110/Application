@@ -1,5 +1,7 @@
 const express = require("express");
 const db = require("./app/node-mysql-server/db-con");
+const cookieParser = require("cookie-parser");
+
 const app = express();
 const bcrypt = require("bcryptjs");
 const port = 8000;

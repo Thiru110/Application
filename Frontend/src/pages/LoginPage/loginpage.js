@@ -5,7 +5,9 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./login.css";
+import api from "../../HTTPHandler/api";
 import api from "../../HTTPHandler/api";
 
 export const Loginpage = () => {
@@ -41,6 +43,20 @@ export const Loginpage = () => {
     }
   };
 
+  const navigate = useNavigate();
+  const userLogin = async (data) => {
+    try {
+      const response = await api.post("/user/login", data);
+      if (response.data.Status === "Success") {
+        navigate("/main");
+        window.alert(response);
+      } else {
+        window.alert(response.data.Error);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
   return (
     <div className="main">
       <div className="container">
@@ -86,6 +102,17 @@ export const Loginpage = () => {
             />
 
             {/* Link is used in react router dom in app.js  */}
+            {/* <Link to="/main"> */}
+            <Button
+              sx={{ marginTop: 3, borderRadius: 5 }}
+              size="large"
+              variant="contained"
+              color="success"
+              type="submit"
+            >
+              Login
+            </Button>
+            {/* </Link> */}
             {/* <Link to="/main"> */}
             <Button
               sx={{ marginTop: 3, borderRadius: 5 }}

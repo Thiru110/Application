@@ -17,6 +17,8 @@
     "express": "^4.19.2",
     "mysql": "^2.18.1",
     "mysql2": "^3.9.3",
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "react-cookie": "^7.1.4",
+    "react-jwt": "^1.2.1"
   }
 }
